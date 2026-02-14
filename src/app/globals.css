@@ -59,26 +59,26 @@
 }
 
 :root {
-  /* Vintage Romantic Palette - Refined */
-  --background: #f4e4bc;
-  /* Parchment Beige */
-  --foreground: #1a0f0f;
-  /* Ink Black */
+  /* Vintage Romantic Palette - Refined (Lavender Dominated) */
+  --background: #dcd0ff;
+  /* Dusty Lavender */
+  --foreground: #2c1810;
+  /* Dark Ink */
 
-  --primary: #7c525f;
-  /* Dusty Mauve/Pink */
+  --primary: #885A89;
+  /* Mauve/Purple */
   --primary-foreground: #f4e4bc;
 
-  --secondary: #967bb6;
-  /* Lavender */
+  --secondary: #B08D55;
+  /* Antique Gold */
   --secondary-foreground: #1a0f0f;
 
-  --accent: #b08d55;
-  /* Antique Gold */
-  --accent-foreground: #1a0f0f;
+  --accent: #D8BFD8;
+  /* Thistle */
+  --accent-foreground: #2c1810;
 
-  --paper: #fdf6e3;
-  /* Lighter writing paper */
+  --paper: #f4e4bc;
+  /* Parchment Beige (moved to specific paper elements) */
   --ink: #1a0f0f;
 }
 
@@ -86,12 +86,14 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+
+  /* Texture: Rough Paper Grain + Purple Tint */
   background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E"),
-    radial-gradient(#b08d55 0.5px, transparent 0.5px);
-  background-size: 100% 100%, 20px 20px;
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E"),
+    radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
+  background-size: 100% 100%, 100% 100%;
   background-blend-mode: overlay, normal;
-  opacity: 0.95;
+  min-height: 100vh;
 }
 
 /* Custom Scrollbar - Vintage Style */

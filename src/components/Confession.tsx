@@ -24,10 +24,10 @@ export function Confession() {
                         <div className="w-80 h-52 bg-[#e6cece] shadow-2xl relative flex items-center justify-center transform transition-transform group-hover:scale-105 duration-500 rounded-sm">
                             <div className="absolute inset-0 border-2 border-[#dcd0ff] m-2 border-dashed opacity-50" />
 
-                            {/* Wax Seal */}
+                            {/* Wax Seal with Heartbeat */}
                             <motion.div
-                                animate={{ scale: [1, 1.05, 1] }}
-                                transition={{ duration: 2, repeat: Infinity }}
+                                animate={{ scale: [1, 1.1, 1] }}
+                                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                                 className="w-16 h-16 rounded-full bg-[#7c525f] shadow-lg flex items-center justify-center z-20 border-4 border-[#967bb6]/30 relative"
                             >
                                 <div className="text-[#f4e4bc] font-serif text-2xl italic">V</div>

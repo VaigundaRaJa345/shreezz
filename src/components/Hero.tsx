@@ -3,35 +3,85 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
+import { FloatingHearts } from "./FloatingHearts";
+
+// 📸 CONFIGURATION: Add your photo URLs here!
+// 1. Place your photos in the 'public/photos' folder (create it if it doesn't exist).
+// 2. Update the 'src' below to '/photos/your-image.jpg'.
+const photos = [
+    {
+        id: 1,
+        src: "/photos/photo1.jpeg", // Updated to matches user's file
+        caption: "First sight",
+        rotate: -6,
+        x: -50,
+        delay: 0.2,
+        position: "top-10 left-4 md:left-20",
+        size: "w-40 h-52 md:w-56 md:h-72",
+        color: "bg-[#efe6d5]"
+    },
+    {
+        id: 2,
+        src: "/photos/photo2.jpeg", // Updated to matches user's file
+        caption: "Sweet memories",
+        rotate: 5,
+        x: 50,
+        delay: 0.4,
+        position: "top-16 right-4 md:right-24",
+        size: "w-36 h-48 md:w-48 md:h-64",
+        color: "bg-[#e6cece]"
+    },
+    {
+        id: 3,
+        src: "/photos/photo3.jpeg", // Updated to matches user's file
+        caption: "Adventures",
+        rotate: 3,
+        x: -50,
+        delay: 0.6,
+        position: "bottom-20 left-6 md:left-32",
+        size: "w-32 h-44 md:w-44 md:h-60",
+        color: "bg-[#dcd0ff]"
+    },
+    {
+        id: 4,
+        src: "/photos/photo4.jpeg", // Updated to matches user's file
+        caption: "Forever",
+        rotate: -4,
+        x: 50,
+        delay: 0.8,
+        position: "bottom-32 right-8 md:right-40",
+        size: "w-44 h-56 md:w-60 md:h-80",
+        color: "bg-[#b08d55]/20"
+    }
+];
 
 export function Hero() {
     return (
         <section className="h-screen w-full flex flex-col items-center justify-center relative overflow-hidden bg-transparent">
-            {/* Collage Elements */}
-            <motion.div
-                initial={{ rotate: -5, x: -100, opacity: 0 }}
-                animate={{ rotate: -5, x: 0, opacity: 1 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                className="absolute top-20 left-10 md:left-32 w-48 h-64 bg-paper shadow-lg border border-[#dcd0ff] p-4 transform -rotate-6 z-0 hidden md:block"
-            >
-                <div className="w-full h-full border-2 border-dashed border-[#967bb6] flex items-center justify-center opacity-50">
-                    <span className="font-handwriting text-2xl text-[#7c525f]">Feb 14</span>
-                </div>
-            </motion.div>
-
-            <motion.div
-                initial={{ rotate: 10, x: 100, opacity: 0 }}
-                animate={{ rotate: 10, x: 0, opacity: 1 }}
-                transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
-                className="absolute bottom-32 right-10 md:right-32 w-56 h-40 bg-[#e6cece] shadow-xl p-2 transform rotate-12 z-0 hidden md:block"
-            >
-                <div className="w-full h-full border border-[#7c525f] flex items-center justify-center">
-                    {/* Placeholder for a vintage stamp or image */}
-                    <div className="w-16 h-16 rounded-full border border-[#7c525f]/20 flex items-center justify-center">
-                        <div className="w-12 h-12 rounded-full border border-[#7c525f]/40 bg-[#b08d55]/10" />
+            {/* Collage Elements - Configurable Photos */}
+            {photos.map((photo) => (
+                <motion.div
+                    key={photo.id}
+                    initial={{ rotate: photo.rotate, x: photo.x, opacity: 0 }}
+                    animate={{ rotate: photo.rotate, x: 0, opacity: 1 }}
+                    transition={{ duration: 1.5, delay: photo.delay }}
+                    className={`absolute ${photo.position} ${photo.size} bg-paper shadow-xl p-3 transform z-0`}
+                    style={{ rotate: `${photo.rotate}deg` }}
+                >
+                    <div className={`w-full h-[85%] ${photo.color} border border-ink/10 flex items-center justify-center overflow-hidden relative group`}>
+                        <img
+                            src={photo.src}
+                            alt={photo.caption}
+                            className="w-full h-full object-cover sepia-[0.3] contrast-[0.9] opacity-80 hover:opacity-100 transition-opacity duration-500"
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                e.currentTarget.parentElement!.innerText = 'Add Photo';
+                            }}
+                        />
                     </div>
-                </div>
-            </motion.div>
+                    <div className="mt-2 text-center font-handwriting text-ink/60 text-sm">{photo.caption}</div>
+                </motion.div>
+            ))}
 
             <div className="z-10 text-center px-4 relative">
                 {/* Decorative flourish top */}
@@ -76,43 +126,10 @@ export function Hero() {
 
             {/* Floating particles/dust */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <FloatingParticles />
+                <FloatingHearts />
             </div>
         </section>
     );
 }
 
-function FloatingParticles() {
-    const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    if (!mounted) return null;
-
-    return (
-        <>
-            {[...Array(5)].map((_, i) => (
-                <motion.div
-                    key={i}
-                    className="absolute w-2 h-2 bg-accent/30 rounded-full"
-                    initial={{
-                        x: Math.random() * 1000,
-                        y: Math.random() * 1000
-                    }}
-                    animate={{
-                        y: [0, -100, 0],
-                        x: [0, 50, 0],
-                        opacity: [0, 1, 0]
-                    }}
-                    transition={{
-                        duration: 10 + Math.random() * 10,
-                        repeat: Infinity,
-                        ease: "linear"
-                    }}
-                />
-            ))}
-        </>
-    );
-}
