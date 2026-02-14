@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function Hero() {
     return (
@@ -75,27 +76,43 @@ export function Hero() {
 
             {/* Floating particles/dust */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                {[...Array(5)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        className="absolute w-2 h-2 bg-accent/30 rounded-full"
-                        initial={{
-                            x: Math.random() * 1000,
-                            y: Math.random() * 1000
-                        }}
-                        animate={{
-                            y: [0, -100, 0],
-                            x: [0, 50, 0],
-                            opacity: [0, 1, 0]
-                        }}
-                        transition={{
-                            duration: 10 + Math.random() * 10,
-                            repeat: Infinity,
-                            ease: "linear"
-                        }}
-                    />
-                ))}
+                <FloatingParticles />
             </div>
         </section>
+    );
+}
+
+function FloatingParticles() {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
+
+    return (
+        <>
+            {[...Array(5)].map((_, i) => (
+                <motion.div
+                    key={i}
+                    className="absolute w-2 h-2 bg-accent/30 rounded-full"
+                    initial={{
+                        x: Math.random() * 1000,
+                        y: Math.random() * 1000
+                    }}
+                    animate={{
+                        y: [0, -100, 0],
+                        x: [0, 50, 0],
+                        opacity: [0, 1, 0]
+                    }}
+                    transition={{
+                        duration: 10 + Math.random() * 10,
+                        repeat: Infinity,
+                        ease: "linear"
+                    }}
+                />
+            ))}
+        </>
     );
 }
