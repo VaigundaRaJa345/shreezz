@@ -15,25 +15,27 @@ export function AudioPlayer() {
         audio.volume = 0.5;
         audioRef.current = audio;
 
-        // Attempt to play automatically
-        const playPromise = audio.play();
-
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                setIsPlaying(true);
-            }).catch((error) => {
-                console.log("Autoplay prevented by browser, waiting for interaction.");
-                // Add a one-time click listener to start audio
-                const enableAudio = () => {
-                    audio.play();
+        // Function to start playing
+        const startAudio = () => {
+            if (audioRef.current && audioRef.current.paused) {
+                audioRef.current.play().then(() => {
                     setIsPlaying(true);
-                    document.removeEventListener('click', enableAudio);
-                };
-                document.addEventListener('click', enableAudio);
-            });
-        }
+                    // Remove listeners once playing
+                    document.removeEventListener('scroll', startAudio);
+                    document.removeEventListener('click', startAudio);
+                }).catch((error) => {
+                    console.log("Audio playback failed, possibly blocked:", error);
+                });
+            }
+        };
+
+        // Add listeners for scroll and click
+        document.addEventListener('scroll', startAudio);
+        document.addEventListener('click', startAudio);
 
         return () => {
+            document.removeEventListener('scroll', startAudio);
+            document.removeEventListener('click', startAudio);
             if (audioRef.current) {
                 audioRef.current.pause();
                 audioRef.current = null;
