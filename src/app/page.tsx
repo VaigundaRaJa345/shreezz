@@ -4,6 +4,7 @@ import { AudioPlayer } from "@/components/AudioPlayer";
 import { Hero } from "@/components/Hero";
 import { Story } from "@/components/Story";
 import { Confession } from "@/components/Confession";
+import { FinalSection } from "@/components/FinalSection";
 import { WelcomePopup } from "@/components/WelcomePopup";
 
 export default function Home() {
