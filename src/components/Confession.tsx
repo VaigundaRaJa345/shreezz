@@ -61,14 +61,19 @@ export function Confession() {
 
                                 <div className="text-lg md:text-xl font-serif text-ink italic leading-relaxed space-y-4">
                                     <p>Hii,</p>
-                                    <p>First thing idhu onnu proposal illa, I want to tell you something.</p>
-                                    <p>Yeah, it started with a glance… 2016 June 🕢<br />
-                                        I’m still stuck with that cute little girl 🌝 sitting in the corner of the class, in the last row.</p>
+                                    <p>I want to tell you something.</p>
+                                    <p>Yeah, it started with a glance… back in June 2016 🕢<br />
+                                        I’m still stuck with that cute little girl 🤌 sitting in the corner of the class, in the last row.</p>
                                     <p>Okay, past things apart, naanum ethana naal dhaan sollama irukkuradhu.<br />
                                         Nee committed aa, single aa nu therila.<br />
                                         Idha sollalama, solla koodaadha nu kooda therila 🤷</p>
-                                    <p>Unna paatha first day la irundhu I’m struck with you, that’s it.<br />
-                                        I just like you girl, avalodha.</p>
+                                    <p>Unna paatha first day la irundhu I’m struck with you, girl—that’s it 👊<br />
+                                        I just like you, avalodha.</p>
+                                    <p>And don’t feel down, you have a lot of potential 💯<br />
+                                        Keep growing 💗✨</p>
+                                    <p>And, unkitta neraiya sollanum nu thonudhu dhaan, but solla varala 😝<br />
+                                        And also, this is not a melting, sad, polambifying message.<br />
+                                        I just want to tell things to you…</p>
                                 </div>
 
                                 <div className="w-32 h-[1px] bg-ink/20" />
