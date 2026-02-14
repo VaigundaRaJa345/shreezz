@@ -89,9 +89,6 @@ export function Confession() {
                                     <span className="text-sm">↗</span>
                                 </button>
                             </div>
-                            <p className="text-center font-handwriting text-ink/40 text-sm mt-4">
-                                Reply varuma nu paapom 😅
-                            </p>
                         </motion.div>
                     </motion.div>
                 )}
