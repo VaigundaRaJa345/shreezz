@@ -69,7 +69,7 @@ export function Confession() {
                         >
                             <div className="text-center space-y-8">
                                 <h2 className="font-handwriting text-5xl md:text-6xl text-primary mb-6">
-                                    Not a Proposal
+                                    of course, Not a Proposal
                                 </h2>
 
                                 <div className="text-lg md:text-xl font-serif text-ink italic leading-relaxed space-y-4">
@@ -84,8 +84,8 @@ export function Confession() {
                                         I just like you, avalodha.</p>
                                     <p>And don’t feel down, you have a lot of potential 💯<br />
                                         Keep growing 💗✨</p>
-                                    <p>And, unkitta neraiya sollanum nu thonudhu dhaan, but solla varala 😝<br />
-                                        And also, this is not a melting, sad, polambifying message.<br />
+                                    <p>And, unkitta neraiya sollanum nu thonudhu dhaan, but ethalam intha message la solradu nu therila 😝<br />
+                                        And also, this is not a melting, sad, polambifing message.<br />
                                         I just want to tell things to you…</p>
                                     <p className="font-handwriting text-3xl md:text-4xl text-primary mt-6">Happy Valentine’s, girl 🤍✨</p>
                                 </div>
