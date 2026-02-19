@@ -86,7 +86,7 @@ export function Confession() {
 
                                 {/* Label on Envelope */}
                                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-max bg-white/60 backdrop-blur-[2px] px-3 py-1 rounded-sm border border-[#dcd0ff]/50 group-hover:bg-white/90 transition-colors">
-                                    <p className="font-serif text-ink/70 tracking-widest text-[10px] uppercase">A Letter for You</p>
+                                    <p className="font-serif text-ink/70 tracking-widest text-[10px] uppercase">Valentines Wishes</p>
                                 </div>
 
                                 {/* Wax Seal */}
