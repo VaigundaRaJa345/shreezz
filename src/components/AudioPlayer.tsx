@@ -108,9 +108,25 @@ export function AudioPlayer() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="bg-black/40 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-xs md:text-sm text-amber-200 whitespace-normal md:whitespace-nowrap text-center mb-2 shadow-lg max-w-[90vw]"
+                    className="bg-black/40 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-xs md:text-sm text-amber-200 whitespace-normal md:whitespace-nowrap text-center mb-2 shadow-lg max-w-[90vw] flex items-center justify-center gap-3"
                 >
                     <span className="italic">{PLAYLIST[currentTrackIndex].caption}</span>
+                    <div className="flex items-end gap-0.5 h-3 my-auto">
+                        {[1, 2, 3].map((i) => (
+                            <motion.div
+                                key={i}
+                                className="w-1 bg-amber-200/80 rounded-full"
+                                animate={{ height: ["4px", "12px", "4px"] }}
+                                transition={{
+                                    duration: 0.8,
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
+                                    delay: i * 0.1,
+                                    ease: "easeInOut"
+                                }}
+                            />
+                        ))}
+                    </div>
                 </motion.div>
 
                 <div className="flex items-center gap-2 p-2 bg-black/30 backdrop-blur-md rounded-full border border-white/10 shadow-2xl relative">

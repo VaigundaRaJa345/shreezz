@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { AudioPlayer } from "@/components/AudioPlayer";
 import { Hero } from "@/components/Hero";
 import { Story } from "@/components/Story";
@@ -8,20 +9,27 @@ import { FinalSection } from "@/components/FinalSection";
 import { WelcomePopup } from "@/components/WelcomePopup";
 
 export default function Home() {
+  const [showContent, setShowContent] = useState(false);
+
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-primary/30 overflow-x-hidden">
-      <WelcomePopup />
-      <AudioPlayer />
+      <WelcomePopup onComplete={() => setShowContent(true)} />
 
-      <Hero />
+      {showContent && (
+        <>
+          <AudioPlayer />
 
-      <div className="relative z-10">
-        <Story />
-      </div>
+          <Hero />
 
-      <Confession />
+          <div className="relative z-10">
+            <Story />
+          </div>
 
-      <FinalSection />
+          <Confession />
+
+          <FinalSection />
+        </>
+      )}
     </main>
   );
 }
