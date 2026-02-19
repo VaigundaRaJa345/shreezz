@@ -1,12 +1,24 @@
+
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { X, Heart, Gift } from "lucide-react";
 
 export function Confession() {
     const [activeLetter, setActiveLetter] = useState<"confession" | "birthday" | null>(null);
+    const [topLetter, setTopLetter] = useState<"confession" | "birthday">("confession");
+
+    useEffect(() => {
+        if (activeLetter !== null) return;
+
+        const interval = setInterval(() => {
+            setTopLetter((prev) => (prev === "confession" ? "birthday" : "confession"));
+        }, 7000);
+
+        return () => clearInterval(interval);
+    }, [activeLetter]);
 
     return (
         <section className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden space-y-8">
@@ -18,13 +30,20 @@ export function Confession() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         className="relative w-full max-w-lg h-[300px] md:h-[400px] flex items-center justify-center z-10 perspective-1000"
                     >
-                        {/* Birthday Envelope (Bottom Stack) */}
+                        {/* Birthday Envelope */}
                         <motion.div
                             key="envelope-birthday"
-                            initial={{ rotate: -10, x: -10, y: 10 }}
-                            whileHover={{ rotate: -5, scale: 1.05, zIndex: 50, y: -20 }}
+                            animate={{
+                                rotate: topLetter === "birthday" ? -5 : -15,
+                                x: topLetter === "birthday" ? 0 : -20,
+                                y: topLetter === "birthday" ? 0 : 20,
+                                scale: topLetter === "birthday" ? 1 : 0.9,
+                                zIndex: topLetter === "birthday" ? 20 : 10,
+                            }}
+                            whileHover={{ scale: 1.05, zIndex: 30 }}
                             whileTap={{ scale: 0.95 }}
-                            className="absolute cursor-pointer group flex flex-col items-center z-10 transition-all duration-300 transform-style-3d"
+                            transition={{ duration: 0.6, ease: "easeInOut" }}
+                            className="absolute cursor-pointer group flex flex-col items-center transition-all duration-300 transform-style-3d"
                             onClick={() => setActiveLetter("birthday")}
                         >
                             <div className="w-64 h-44 md:w-72 md:h-48 bg-[#f4e4bc] shadow-xl relative flex items-center justify-center rounded-sm border border-[#d4c5a5]">
@@ -44,13 +63,20 @@ export function Confession() {
                             </div>
                         </motion.div>
 
-                        {/* Confession Envelope (Top Stack) */}
+                        {/* Confession Envelope */}
                         <motion.div
                             key="envelope-confession"
-                            initial={{ rotate: 5, x: 10, y: -10 }}
-                            whileHover={{ rotate: 0, scale: 1.05, zIndex: 50, y: -30 }}
+                            animate={{
+                                rotate: topLetter === "confession" ? 5 : 15,
+                                x: topLetter === "confession" ? 0 : 20,
+                                y: topLetter === "confession" ? 0 : 20,
+                                scale: topLetter === "confession" ? 1 : 0.9,
+                                zIndex: topLetter === "confession" ? 20 : 10,
+                            }}
+                            whileHover={{ scale: 1.05, zIndex: 30 }}
                             whileTap={{ scale: 0.95 }}
-                            className="absolute cursor-pointer group flex flex-col items-center z-20 transition-all duration-300 transform-style-3d"
+                            transition={{ duration: 0.6, ease: "easeInOut" }}
+                            className="absolute cursor-pointer group flex flex-col items-center transition-all duration-300 transform-style-3d"
                             onClick={() => setActiveLetter("confession")}
                         >
                             <div className="w-64 h-44 md:w-72 md:h-48 bg-[#e6cece] shadow-2xl relative flex items-center justify-center rounded-sm border border-[#dcd0ff]">

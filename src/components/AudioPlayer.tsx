@@ -20,8 +20,12 @@ export function AudioPlayer() {
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
-        // Initialize audio
-        const audio = new Audio(PLAYLIST[0].src);
+        // Randomize start track
+        const randomIndex = Math.floor(Math.random() * PLAYLIST.length);
+        setCurrentTrackIndex(randomIndex);
+
+        // Initialize audio with random track
+        const audio = new Audio(PLAYLIST[randomIndex].src);
         audio.loop = true;
         audio.volume = 0.5;
         audioRef.current = audio;
