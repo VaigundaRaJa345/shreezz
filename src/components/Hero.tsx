@@ -11,46 +11,46 @@ import { FloatingHearts } from "./FloatingHearts";
 const photos = [
     {
         id: 1,
-        src: "/photos/photo1.jpeg", // Updated to matches user's file
+        src: "/photos/photo1.jpeg",
         caption: "First sight",
         rotate: -6,
         x: -50,
         delay: 0.2,
-        position: "top-10 left-4 md:left-20",
+        position: "top-8 left-4 md:top-12 md:left-20",
         size: "w-40 h-52 md:w-56 md:h-72",
         color: "bg-[#efe6d5]"
     },
     {
         id: 2,
-        src: "/photos/photo2.jpeg", // Updated to matches user's file
+        src: "/photos/photo2.jpeg",
         caption: "Sweet memories",
         rotate: 5,
         x: 50,
         delay: 0.4,
-        position: "top-16 right-4 md:right-24",
-        size: "w-36 h-48 md:w-48 md:h-64",
+        position: "top-8 right-4 md:top-12 md:right-20",
+        size: "w-36 h-48 md:w-52 md:h-64",
         color: "bg-[#e6cece]"
     },
     {
         id: 3,
-        src: "/photos/photo3.jpeg", // Updated to matches user's file
+        src: "/photos/photo3.jpeg",
         caption: "Adventures",
         rotate: 3,
         x: -50,
         delay: 0.6,
-        position: "bottom-20 left-6 md:left-32",
-        size: "w-32 h-44 md:w-44 md:h-60",
+        position: "bottom-32 left-4 md:bottom-24 md:left-20",
+        size: "w-32 h-44 md:w-48 md:h-64",
         color: "bg-[#dcd0ff]"
     },
     {
         id: 4,
-        src: "/photos/photo4.jpeg", // Updated to matches user's file
+        src: "/photos/photo4.jpeg",
         caption: "Forever",
         rotate: -4,
         x: 50,
         delay: 0.8,
-        position: "bottom-32 right-8 md:right-40",
-        size: "w-44 h-56 md:w-60 md:h-80",
+        position: "bottom-32 right-4 md:bottom-24 md:right-20",
+        size: "w-40 h-52 md:w-56 md:h-72",
         color: "bg-[#b08d55]/20"
     }
 ];
