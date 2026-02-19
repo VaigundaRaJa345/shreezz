@@ -8,7 +8,7 @@ import { Diary } from "./Diary";
 const PLAYLIST = [
     { title: "Ordinary", src: "/audio/ordinary.mp3", caption: "Because with you, nothing is ordinary." },
     { title: "Theethiriyaai", src: "/audio/theethiriyaai.mp3", caption: "This is how i fell for you in 7th STD." },
-    { title: "Nallaru Po", src: "/audio/nallaru_po.mp3", caption: "Then, Master the art of \"Watching you from the far\"." },
+    { title: "Nallaru Po", src: "/audio/nallaru_po.mp3", caption: "Then, Master the art of \"Watching you from the far\".   " },
     { title: "Mudhal nee mudivum nee", src: "/audio/background.mp3", caption: "My timeless confusion." },
 ];
 
@@ -28,13 +28,10 @@ export function AudioPlayer() {
         const audio = new Audio(PLAYLIST[randomIndex].src);
         audio.loop = false;
         audio.volume = 0.5;
-        audioRef.current = audio;
-
-        // Handle auto-next
-        const handleEnded = () => {
+        audio.onended = () => {
             setCurrentTrackIndex((prev) => (prev + 1) % PLAYLIST.length);
         };
-        audio.addEventListener('ended', handleEnded);
+        audioRef.current = audio;
 
         // Function to start playing
         const startAudio = () => {
@@ -58,7 +55,6 @@ export function AudioPlayer() {
             document.removeEventListener('scroll', startAudio);
             document.removeEventListener('click', startAudio);
             if (audioRef.current) {
-                audioRef.current.removeEventListener('ended', handleEnded);
                 audioRef.current.pause();
                 audioRef.current = null;
             }
@@ -74,7 +70,7 @@ export function AudioPlayer() {
                 audioRef.current.play().catch(e => console.error("Playback failed:", e));
             }
         }
-    }, [currentTrackIndex, isPlaying]); // Added isPlaying dependency just in case, though logically mostly depends on index
+    }, [currentTrackIndex]);
 
     const togglePlay = () => {
         if (audioRef.current) {
@@ -107,7 +103,15 @@ export function AudioPlayer() {
             <Diary isOpen={isDiaryOpen} onClose={() => setIsDiaryOpen(false)} />
 
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 w-max">
-                {/* Now Playing removed */}
+                <motion.div
+                    key={currentTrackIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="bg-black/40 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-xs md:text-sm text-amber-200 whitespace-normal md:whitespace-nowrap text-center mb-2 shadow-lg max-w-[90vw]"
+                >
+                    <span className="italic">{PLAYLIST[currentTrackIndex].caption}</span>
+                </motion.div>
 
                 <div className="flex items-center gap-2 p-2 bg-black/30 backdrop-blur-md rounded-full border border-white/10 shadow-2xl relative">
                     <AnimatePresence>
